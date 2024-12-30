@@ -14,9 +14,8 @@ describe('Teste de funcionalidades da agenda de contatos', () => {
   })
 
   it('Deve ser possível alterar um contato existente', () => {
-    cy.get('.contato').last().within(() => {
-      cy.get('.edit').click()
-    })
+    cy.get('.contato').last().find('.edit').click()
+
     cy.get('input[placeholder="Nome"]').clear().type('Contato Alterado')
     cy.get('input[placeholder="E-mail"]').clear().type('contatoalterado@example.com')
     cy.get('input[placeholder="Telefone"]').clear().type('987654321')
@@ -24,10 +23,12 @@ describe('Teste de funcionalidades da agenda de contatos', () => {
     cy.contains('Contato Alterado').should('exist')
   })
 
+ 
+
   it('Deve ser possível remover um contato existente', () => {
-    cy.get('.contato').last().within(() => {
-      cy.get('.delete').click()
-    })
+    cy.get('.contato').last().find('.delete').click()
+    
     cy.get('.contato').should('have.length', 3)
   })
 })
+
